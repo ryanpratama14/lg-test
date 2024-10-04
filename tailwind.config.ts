@@ -12,6 +12,7 @@ export default {
         dark: "#010101",
         gray: "#909090",
         gray2: "#606060",
+        gray3: "#787878",
         input: "#EFEFEF",
         green: "#00AE31",
         grayborder: "#C9C9C9",
@@ -20,7 +21,9 @@ export default {
         nitti: ["Nitti", ...fontFamily.sans],
       },
       screens: {
-        "3xl": "2056px",
+        fhd: "1920px",
+        "2k": "2560px",
+        "4k": "3840px",
       },
     },
   },

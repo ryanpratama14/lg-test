@@ -20,7 +20,7 @@ export default function LoginForm() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitted },
     watch,
     control,
   } = useForm<z.infer<typeof Schema>>({
@@ -42,6 +42,7 @@ export default function LoginForm() {
           name="phoneNumber"
           render={({ field: { onChange, name, value } }) => (
             <Input
+              isSubmitted={isSubmitted}
               name={name}
               value={formatPhoneNumber(value).text}
               onChange={(e) => onChange(onChangePhoneNumber(e.target.value))}
@@ -56,6 +57,7 @@ export default function LoginForm() {
         />
 
         <Input
+          isSubmitted={isSubmitted}
           val={watch().password}
           error={errors?.password?.message}
           {...register("password")}

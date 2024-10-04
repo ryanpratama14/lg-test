@@ -2,18 +2,25 @@
 
 import Button from "@/components/html/button";
 import Input from "@/components/html/input";
+import Select from "@/components/html/select";
 import { ICONS } from "@/lib/constants";
-import { formatPhoneNumber, onChangePhoneNumber } from "@/lib/utils";
+import { cn, formatPhoneNumber, onChangePhoneNumber } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Icon } from "@iconify-icon/react/dist/iconify.mjs";
 import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
-import Select from "../html/select";
 
 const DOCUMENTS_TYPE = ["Паспорт РФ", "Паспорт иностранного гражданина"] as const;
+const REGISTRATION_TYPE = ["Полная", "Упрощенная"] as const;
+
+const fullNamePattern = /^[A-Za-zА-Яа-яЁё]{1,}\s[A-Za-zА-Яа-яЁё]{1,}\s[A-Za-zА-Яа-яЁё]{1,}$/;
 
 const Schema = z
   .object({
-    fullName: z.string().min(9, "Поле должно содержать ваше ФИО"),
+    fullName: z
+      .string()
+      .min(9, "Поле должно содержать ваше ФИО")
+      .regex(fullNamePattern, "ФИО должно состоять из трех частей, разделенных пробелами (например, 'Иванов Иван Иванович')"),
     password: z.string().min(6, "Пароль должен быть не менее 6 символов"),
     confirmPassword: z.string().min(6, "Пароль должен быть не менее 6 символов"),
     phoneNumber: z.string().min(11, "Поле должно содержать 11 цифр"),
@@ -21,18 +28,25 @@ const Schema = z
     dateOfBirth: z.string().min(1, "Укажите дату рождения"),
     document: z.enum(DOCUMENTS_TYPE),
     agreed: z.boolean(),
+    type: z.enum(REGISTRATION_TYPE),
   })
   .refine(({ password, confirmPassword }) => password === confirmPassword, {
     message: "Пароль и подтверждение пароля не совпадают",
     path: ["confirmPassword"],
+  })
+  .refine(({ agreed }) => agreed, {
+    message: "Отметьте это, чтобы продолжить",
+    path: ["agreed"],
   });
 
 export default function RegistrationForm() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitted },
     watch,
+    setValue,
+    trigger,
     control,
   } = useForm<z.infer<typeof Schema>>({
     resolver: zodResolver(Schema),
@@ -45,6 +59,7 @@ export default function RegistrationForm() {
       dateOfBirth: "",
       document: "Паспорт РФ",
       agreed: false,
+      type: "Полная",
     },
   });
 
@@ -53,94 +68,153 @@ export default function RegistrationForm() {
       onSubmit={handleSubmit((e) => {
         console.log(e);
       })}
-      className="w-[50%] grid gap-6 grid-cols-2"
+      className="flex flex-col gap-10"
     >
-      <Input
-        classNameDiv="col-span-2"
-        val={watch().fullName}
-        error={errors?.fullName?.message}
-        {...register("fullName")}
-        placeholder="ФИО"
-        label="ФИО"
-        icon={ICONS.password}
-      />
+      <section className="col-span-2 flex gap-2 items-center justify-center">
+        <section className="grid grid-cols-2 gap-6 w-[70%]">
+          {REGISTRATION_TYPE.map((e) => {
+            const isSelected = watch().type === e;
+            return (
+              <button
+                type="button"
+                key={e}
+                onClick={() => setValue("type", e)}
+                className={cn("uppercase animate flex items-center justify-center relative text-gray3 bg-input w-full h-12 rounded-full", {
+                  "bg-red text-white": isSelected,
+                })}
+              >
+                <b>{e}</b>
 
-      <Controller
-        control={control}
-        name="phoneNumber"
-        render={({ field: { onChange, name, value } }) => (
-          <Input
-            name={name}
-            value={formatPhoneNumber(value).text}
-            onChange={(e) => onChange(onChangePhoneNumber(e.target.value))}
-            val={value}
-            error={errors?.phoneNumber?.message}
-            placeholder="Номер телефона"
-            label="Номер телефона"
-            icon={ICONS.phoneNumber}
-            maxLength={19}
-          />
-        )}
-      />
+                {isSelected ? <Icon icon={ICONS.info} className="absolute centered-right -translate-x-4" width={25} /> : null}
+              </button>
+            );
+          })}
+        </section>
+      </section>
 
-      <Input
-        type="date"
-        maxLength={10}
-        val={watch().dateOfBirth}
-        error={errors?.dateOfBirth?.message}
-        {...register("dateOfBirth")}
-        placeholder="Дата рождения"
-        label="Дата рождения"
-        icon={ICONS.password}
-      />
+      <section className="grid grid-cols-2 gap-6">
+        <Input
+          isSubmitted={isSubmitted}
+          classNameDiv="col-span-2"
+          val={watch().fullName}
+          error={errors?.fullName?.message}
+          {...register("fullName")}
+          placeholder="ФИО"
+          label="ФИО"
+          icon={ICONS.fullName}
+        />
 
-      <Select
-        {...register("document")}
-        placeholder="Документ"
-        label="Документ"
-        icon={ICONS.password}
-        val={watch().document}
-        error={errors?.document?.message}
-        options={DOCUMENTS_TYPE.map((e) => (
-          <option key={e} value={e}>
-            {e}
-          </option>
-        ))}
-      />
+        <Controller
+          control={control}
+          name="phoneNumber"
+          render={({ field: { onChange, name, value } }) => (
+            <Input
+              isSubmitted={isSubmitted}
+              name={name}
+              value={formatPhoneNumber(value).text}
+              onChange={(e) => onChange(onChangePhoneNumber(e.target.value))}
+              val={value}
+              error={errors?.phoneNumber?.message}
+              placeholder="Номер телефона"
+              label="Номер телефона"
+              icon={ICONS.phoneNumber}
+              maxLength={19}
+            />
+          )}
+        />
 
-      <Input
-        maxLength={10}
-        val={watch().serialNumber}
-        error={errors?.serialNumber?.message}
-        {...register("serialNumber")}
-        placeholder="Укажите 10 цифр серия и номер"
-        label="Укажите 10 цифр серия и номер"
-        icon={ICONS.password}
-      />
+        <Input
+          isSubmitted={isSubmitted}
+          type="date"
+          maxLength={10}
+          val={watch().dateOfBirth}
+          error={errors?.dateOfBirth?.message}
+          {...register("dateOfBirth")}
+          placeholder="Дата рождения"
+          label="Дата рождения"
+          icon={ICONS.date}
+        />
 
-      <Input
-        type="password"
-        val={watch().password}
-        error={errors?.password?.message}
-        {...register("password")}
-        placeholder="Укажите пароль"
-        label="Укажите пароль"
-        icon={ICONS.password}
-      />
+        <Select
+          isSubmitted={isSubmitted}
+          {...register("document")}
+          placeholder="Документ"
+          label="Документ"
+          icon={ICONS.document}
+          val={watch().document}
+          error={errors?.document?.message}
+          options={DOCUMENTS_TYPE.map((e) => (
+            <option key={e} value={e}>
+              {e}
+            </option>
+          ))}
+        />
 
-      <Input
-        type="password"
-        val={watch().confirmPassword}
-        error={errors?.confirmPassword?.message}
-        {...register("confirmPassword")}
-        placeholder="Повторите пароль"
-        label="Повторите пароль"
-        icon={ICONS.password}
-      />
+        <Input
+          isSubmitted={isSubmitted}
+          maxLength={10}
+          val={watch().serialNumber}
+          error={errors?.serialNumber?.message}
+          {...register("serialNumber")}
+          placeholder="Укажите 10 цифр серия и номер"
+          label="Укажите 10 цифр серия и номер"
+          icon={ICONS.serialNumber}
+        />
 
-      <Button type="submit" className="uppercase col-span-2">
-        зарегистрироваться
-      </Button>
+        <Input
+          isSubmitted={isSubmitted}
+          type="password"
+          val={watch().password}
+          error={errors?.password?.message}
+          {...register("password")}
+          placeholder="Укажите пароль"
+          label="Укажите пароль"
+          icon={ICONS.password}
+        />
+
+        <Input
+          isSubmitted={isSubmitted}
+          type="password"
+          val={watch().confirmPassword}
+          error={errors?.confirmPassword?.message}
+          {...register("confirmPassword")}
+          placeholder="Повторите пароль"
+          label="Повторите пароль"
+          icon={ICONS.password}
+        />
+      </section>
+
+      <section className="flex flex-col gap-4">
+        <section className="flex flex-col gap-1.5">
+          <section className="flex gap-4 items-center">
+            <button
+              type="button"
+              className={cn("flex items-center justify-start px-1 relative bg-input rounded-full w-14 h-8", { "justify-end": watch().agreed })}
+              onClick={() => {
+                setValue("agreed", !watch().agreed);
+                trigger("agreed");
+              }}
+            >
+              <div
+                className={cn("flex animate items-center justify-center size-6 rounded-full", {
+                  "bg-red text-white": watch().agreed,
+                })}
+              >
+                <Icon icon={ICONS.check} width={20} />
+              </div>
+            </button>
+            <p>Я даю свое право на информационную рассылку</p>
+          </section>
+
+          <small className={cn("uppercase font-bold text-red animate", { "opacity-0 -translate-y-2 -z-10": !errors?.agreed?.message })}>
+            {errors?.agreed?.message}
+          </small>
+        </section>
+
+        <Button type="submit" className="uppercase">
+          зарегистрироваться
+        </Button>
+      </section>
     </form>
   );
 }

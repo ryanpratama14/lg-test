@@ -1,5 +1,7 @@
 import Img from "@/components/html/img";
+import ScreenSizeIndicator from "@/components/screen-size-indicator";
 import Footer from "@/components/sections/footer";
+import { env } from "@/env";
 import "@/styles/globals.css";
 import rectangle_left from "assets/rectangle-left-bg-logo.png";
 import rectangle_right from "assets/rectangle-right-bg-logo.png";
@@ -17,6 +19,8 @@ export default function RootLayout({ children }: Props) {
   return (
     <html lang="ru">
       <body className="bg-white font-lato">
+        {env.NODE_ENV === "development" ? <ScreenSizeIndicator /> : null}
+
         <main className="relative">
           {children}
 
