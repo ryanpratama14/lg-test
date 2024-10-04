@@ -20,13 +20,13 @@ export default function Footer() {
         </section>
       </section>
 
-      <section className="flex gap-2 items-center absolute bottom-6 right-6">
+      <section className="flex gap-4 items-center absolute bottom-6 right-6">
         <button className="font-bold px-1.5 py-1 rounded-lg border-2 border-grayborder" type="button">
           EN
         </button>
-        <p className="text-4xl font-bold font-nitti">
+        <h1 className="text-4xl 2k:text-5xl font-bold font-nitti">
           <Hour />
-        </p>
+        </h1>
       </section>
     </Fragment>
   );

@@ -6,7 +6,7 @@ import Select from "@/components/html/select";
 import { ICONS } from "@/lib/constants";
 import { cn, formatPhoneNumber, onChangePhoneNumber } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Icon } from "@iconify-icon/react/dist/iconify.mjs";
+import { Icon } from "@iconify-icon/react";
 import { useRouter } from "next/navigation";
 import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
@@ -76,7 +76,7 @@ export default function RegistrationForm() {
                 type="button"
                 key={e}
                 onClick={() => setValue("type", e)}
-                className={cn("uppercase animate flex items-center justify-center relative text-gray3 bg-input w-full h-12 rounded-full", {
+                className={cn("uppercase animate flex items-center justify-center relative text-gray3 bg-input w-full h-12 4k:h-16 rounded-full", {
                   "bg-red text-white": isSelected,
                 })}
               >

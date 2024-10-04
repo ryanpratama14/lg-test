@@ -29,7 +29,7 @@ export default function LoginForm() {
   });
 
   return (
-    <form onSubmit={handleSubmit(() => router.push("/dashboard"))} className="flex flex-col gap-12 w-96">
+    <form onSubmit={handleSubmit(() => router.push("/dashboard"))} className="flex flex-col gap-12 w-full">
       <section className="flex flex-col gap-6">
         <Controller
           control={control}

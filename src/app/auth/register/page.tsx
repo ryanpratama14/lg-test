@@ -1,4 +1,6 @@
 import RegistrationForm from "@/components/sections/registration-form";
+import { ICONS } from "@/lib/constants";
+import { Icon } from "@iconify-icon/react";
 import Link from "next/link";
 
 export default function RegisterPage() {
@@ -9,9 +11,11 @@ export default function RegisterPage() {
         <RegistrationForm />
         <Link
           href="/auth/login"
-          className="font-bold h-12 flex gap-2 items-center justify-center border-2 border-black text-black bg-white uppercase w-full rounded-full"
+          className="group font-bold h-12 4k:h-16 flex gap-2 items-center justify-center border-2 border-black text-black bg-white uppercase w-full rounded-full"
         >
-          вернутся на главную
+          <Icon icon={ICONS.arrow} rotate={1} width={25} className="animate group-hover:-translate-x-1" />
+
+          <span>вернутся на главную</span>
         </Link>
       </section>
     </article>

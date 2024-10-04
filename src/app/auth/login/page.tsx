@@ -2,7 +2,6 @@ import Img from "@/components/html/img";
 import LoginForm from "@/components/sections/login-form";
 import appstore from "assets/apps-store.png";
 import googleplay from "assets/google-play.png";
-
 import logo from "assets/logo.png";
 import Link from "next/link";
 

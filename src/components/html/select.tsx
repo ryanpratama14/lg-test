@@ -36,14 +36,19 @@ const Select = forwardRef<HTMLSelectElement, Props>(
               {...rest}
               ref={ref}
               className={cn(
-                "z-10 -translate-x-1 font-bold text-lg placeholder:text-gray w-full outline-none bg-transparent h-20 animate group-hover:translate-y-2.5",
+                "z-10 -translate-x-1 font-bold text-lg placeholder:text-gray w-full outline-none bg-transparent h-20 4k:h-36 animate group-hover:translate-y-2.5 4k:group-hover:translate-y-6",
                 className,
-                { "translate-y-2.5": isDirty },
+                { "translate-y-2.5 4k:translate-y-6": isDirty },
               )}
             >
               {options}
             </select>
-            <label htmlFor={id} className={cn("text-gray animate absolute centered group-hover:top-6 text-left w-full", { "top-6": isDirty })}>
+            <label
+              htmlFor={id}
+              className={cn("text-gray animate absolute centered group-hover:top-6 4k:group-hover:top-12 text-left w-full", {
+                "top-6 4k:top-12": isDirty,
+              })}
+            >
               {validated ? label : placeholder}
             </label>
           </section>

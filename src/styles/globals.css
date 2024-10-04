@@ -7,6 +7,22 @@ body {
   font-family: "Lato", sans-serif;
 }
 
+@layer base {
+  p,
+  button,
+  a,
+  input,
+  label,
+  select,
+  option {
+    @apply text-base 2k:text-xl 4k:!text-4xl;
+  }
+
+  small {
+    @apply text-sm 2k:text-base 4k:text-xl;
+  }
+}
+
 @layer components {
   .animate {
     @apply transition-all duration-300;
