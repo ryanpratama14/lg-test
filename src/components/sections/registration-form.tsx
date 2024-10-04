@@ -7,6 +7,7 @@ import { ICONS } from "@/lib/constants";
 import { cn, formatPhoneNumber, onChangePhoneNumber } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Icon } from "@iconify-icon/react/dist/iconify.mjs";
+import { useRouter } from "next/navigation";
 import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -40,6 +41,7 @@ const Schema = z
   });
 
 export default function RegistrationForm() {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -64,12 +66,7 @@ export default function RegistrationForm() {
   });
 
   return (
-    <form
-      onSubmit={handleSubmit((e) => {
-        console.log(e);
-      })}
-      className="flex flex-col gap-10"
-    >
+    <form onSubmit={handleSubmit(() => router.push("/dashboard"))} className="flex flex-col gap-10">
       <section className="col-span-2 flex gap-2 items-center justify-center">
         <section className="grid grid-cols-2 gap-6 w-[70%]">
           {REGISTRATION_TYPE.map((e) => {

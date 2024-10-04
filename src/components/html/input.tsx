@@ -61,7 +61,9 @@ const Input = forwardRef<HTMLInputElement, Props>(
             </button>
           ) : null}
 
-          {isSubmitted ? <Img className="w-5 absolute centered-right -translate-x-4" src={validated ? validIcon : errorIcon} alt="" /> : null}
+          {isSubmitted && isDirty ? (
+            <Img className="w-5 absolute centered-right -translate-x-4" src={validated ? validIcon : errorIcon} alt="" />
+          ) : null}
         </section>
         <small className={cn("uppercase font-bold text-red animate", { "opacity-0 -translate-y-2 -z-10": !error })}>{error}</small>
       </section>

@@ -8,7 +8,7 @@ export default function RegisterPage() {
       <section className="w-full flex flex-col gap-10 lg:w-[40%]">
         <RegistrationForm />
         <Link
-          href="/"
+          href="/auth/login"
           className="font-bold h-12 flex gap-2 items-center justify-center border-2 border-black text-black bg-white uppercase w-full rounded-full"
         >
           вернутся на главную
