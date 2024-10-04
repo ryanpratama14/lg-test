@@ -1,3 +1,52 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  font-family: "Lato", sans-serif;
+}
+
+@layer components {
+  .animate {
+    @apply transition-all duration-300;
+  }
+  .animate-longer {
+    @apply transition-all duration-500;
+  }
+  /* fixed positions for absolute or fixed position */
+  .centered {
+    @apply top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
+  }
+  .centered-bottom {
+    @apply bottom-0 left-1/2 -translate-x-1/2;
+  }
+  .centered-top {
+    @apply top-0 left-1/2 -translate-x-1/2;
+  }
+  .centered-left {
+    @apply top-1/2 left-0 -translate-y-1/2;
+  }
+  .centered-right {
+    @apply top-1/2 right-0 -translate-y-1/2;
+  }
+  .centered-horizontal {
+    @apply left-1/2 -translate-x-1/2;
+  }
+}
+
+@font-face {
+  font-family: "Nitti";
+  font-weight: normal;
+  src: url("/fonts//Nitti-Normal.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Nitti";
+  font-weight: 700;
+  src: url("/fonts/Nitti-Bold.woff") format("woff");
+}
+
+.button-shadow {
+  box-shadow: 0px 4px 7px 0px rgba(220, 0, 0, 0.17);
+}

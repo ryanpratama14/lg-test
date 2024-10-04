@@ -1,6 +1,8 @@
+import Img from "@/components/html/img";
+import Footer from "@/components/sections/footer";
 import "@/styles/globals.css";
-
-import { GeistSans } from "geist/font/sans";
+import rectangle_left from "assets/rectangle-left-bg-logo.png";
+import rectangle_right from "assets/rectangle-right-bg-logo.png";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -9,10 +11,26 @@ export const metadata: Metadata = {
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+type Props = { children: React.ReactNode };
+
+export default function RootLayout({ children }: Props) {
   return (
-    <html lang="en" className={`${GeistSans.variable}`}>
-      <body>{children}</body>
+    <html lang="ru">
+      <body className="bg-white font-lato">
+        <main className="relative">
+          {children}
+
+          <section className="font-bold font-nitti text-center absolute top-12 left-12">
+            <h1 className="text-9xl">23</h1>
+            <p className="text-4xl">Стандарт</p>
+          </section>
+
+          <Img src={rectangle_left} className="absolute bottom-0 left-0 w-56" alt="" />
+          <Img src={rectangle_right} className="absolute top-0 right-0 w-56" alt="" />
+
+          <Footer />
+        </main>
+      </body>
     </html>
   );
 }

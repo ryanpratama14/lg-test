@@ -1,0 +1,25 @@
+import { cn } from "@/lib/utils";
+import { type ComponentProps, forwardRef } from "react";
+
+type Props = ComponentProps<"button">;
+
+const Button = forwardRef<HTMLButtonElement, Props>(({ disabled, type, children, className, ...rest }, ref) => {
+  return (
+    <button
+      disabled={disabled}
+      className={cn("animate flex items-center justify-center bg-red text-white w-full h-12 rounded-full", className, {
+        "bg-redDisabled": disabled,
+        "button-shadow": !disabled,
+      })}
+      {...rest}
+      ref={ref}
+      type={type ?? "button"}
+    >
+      {children}
+    </button>
+  );
+});
+
+Button.displayName = "Button";
+
+export default Button;
