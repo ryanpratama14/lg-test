@@ -77,7 +77,7 @@ export default function RegistrationForm() {
                 key={e}
                 onClick={() => setValue("type", e)}
                 className={cn("uppercase animate flex items-center justify-center relative text-gray3 bg-input w-full h-12 4k:h-16 rounded-full", {
-                  "bg-red text-white": isSelected,
+                  "bg-red text-white button-shadow-gray": isSelected,
                 })}
               >
                 <b>{e}</b>

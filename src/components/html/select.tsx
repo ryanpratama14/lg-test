@@ -33,6 +33,7 @@ const Select = forwardRef<HTMLSelectElement, Props>(
           <Icon icon={icon} className="text-gray2" width={30} />
           <section className="relative w-full">
             <select
+              id={id}
               {...rest}
               ref={ref}
               className={cn(

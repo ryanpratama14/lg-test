@@ -21,9 +21,9 @@ export default function HomePage() {
 
         <section className="flex flex-col gap-4 justify-center items-center">
           <p>Установите приложение.</p>
-          <section className="flex items-center justify-center gap-2">
-            <Img src={appstore} alt="" className="w-36" />
-            <Img src={googleplay} alt="" className="w-36" />
+          <section className="flex items-center justify-center gap-6">
+            <Img src={appstore} alt="" className="w-40" />
+            <Img src={googleplay} alt="" className="w-40" />
           </section>
         </section>
       </section>
