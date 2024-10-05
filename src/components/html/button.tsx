@@ -9,7 +9,7 @@ const Button = forwardRef<HTMLButtonElement, Props>(({ disabled, type, children,
       disabled={disabled}
       className={cn("font-bold animate flex items-center justify-center bg-red text-white w-full h-12 4k:h-16 rounded-full", className, {
         "bg-redDisabled": disabled,
-        "button-shadow": !disabled,
+        "button-shadow hover:bg-redHover": !disabled,
       })}
       {...rest}
       ref={ref}

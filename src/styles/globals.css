@@ -11,6 +11,7 @@ body {
   p,
   button,
   a,
+  b,
   input,
   label,
   select,
@@ -24,6 +25,9 @@ body {
 }
 
 @layer components {
+  .dashboard-box {
+    @apply bg-white shadow-lg px-6 rounded-xl justify-center;
+  }
   .animate {
     @apply transition-all duration-300;
   }

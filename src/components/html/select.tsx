@@ -25,7 +25,7 @@ const Select = forwardRef<HTMLSelectElement, Props>(
     return (
       <section className={cn("flex flex-col gap-1.5 w-full", classNameDiv)}>
         <section
-          className={cn("animate group bg-input relative pl-5 pr-12 flex gap-4 items-center w-full rounded-md border-2 border-transparent", {
+          className={cn("animate group bg-input relative pl-5 pr-12 flex gap-4 items-center w-full rounded-lg border-2 border-transparent", {
             "border-green outline outline-4 outline-[#F0FAF4]": validated,
             "border-red outline outline-4 outline-[#FDF1F0]": error,
           })}

@@ -1,15 +1,18 @@
-import Img from "@/components/html/img";
-import logo from "assets/logo.png";
+import DashboardFooter from "@/app/dashboard/components/dashboard-footer";
+import DashboardMenus from "@/app/dashboard/components/dashboard-menus";
 
 type Props = { children: React.ReactNode };
 
 export default function DashboardLayout({ children }: Props) {
   return (
-    <article>
-      <aside className="h-screen left-0 sticky w-96 flex flex-col pt-12">
-        <Img src={logo} alt="" className="w-44" />
-      </aside>
-      {children}
+    <article className="flex h-screen">
+      <DashboardMenus />
+      <div className="flex-grow overflow-auto bg-white">
+        <article className="bg-silver rounded-[4rem] flex flex-col justify-between max-h-screen">
+          {children}
+          <DashboardFooter />
+        </article>
+      </div>
     </article>
   );
 }

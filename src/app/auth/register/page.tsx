@@ -1,4 +1,4 @@
-import RegistrationForm from "@/components/sections/registration-form";
+import RegistrationForm from "@/app/auth/register/components/registration-form";
 import { ICONS } from "@/lib/constants";
 import { Icon } from "@iconify-icon/react";
 import Link from "next/link";

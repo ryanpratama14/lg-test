@@ -13,9 +13,12 @@ export default {
         gray: "#909090",
         gray2: "#606060",
         gray3: "#787878",
+        grayIcon: "#B3B3B3",
         input: "#EFEFEF",
         green: "#00AE31",
         grayborder: "#C9C9C9",
+        divide: "#DBDBDB",
+        silver: "#EAEAEA",
       },
       fontFamily: {
         nitti: ["Nitti", ...fontFamily.sans],
