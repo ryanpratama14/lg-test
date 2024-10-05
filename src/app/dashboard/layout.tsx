@@ -8,7 +8,7 @@ export default function DashboardLayout({ children }: Props) {
     <article className="flex h-screen">
       <DashboardMenus />
       <div className="flex-grow overflow-auto bg-white">
-        <article className="bg-silver rounded-[4rem] flex flex-col justify-between max-h-screen">
+        <article className="bg-gradient-to-r from-silver via-silver/80 to-silver rounded-[4rem] flex flex-col justify-between max-h-screen">
           {children}
           <DashboardFooter />
         </article>

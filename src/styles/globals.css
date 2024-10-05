@@ -20,7 +20,7 @@ body {
   }
 
   h5 {
-    @apply text-2xl 2k:text-3xl 4k:text-5xl;
+    @apply text-xl 2k:text-2xl 4k:text-4xl;
   }
 
   small {
