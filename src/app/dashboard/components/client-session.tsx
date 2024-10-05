@@ -5,9 +5,9 @@ const DATA = {
 
 export default function ClientSession() {
   return (
-    <section className="dashboard-box flex flex-col gap-6 row-span-2">
+    <section className="dashboard-box flex flex-col justify-between row-span-2">
       <p className="uppercase">Информация о текущей сесии</p>
-      <section className="flex flex-col gap-4">
+      <section className="flex flex-col gap-2">
         <section className="flex items-center justify-between">
           <p>Осталось минут:</p>
           <b>{DATA.remainingTimeCurrentSession}</b>

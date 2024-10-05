@@ -76,13 +76,18 @@ export default function RegistrationForm() {
                 type="button"
                 key={e}
                 onClick={() => setValue("type", e)}
-                className={cn("uppercase animate flex items-center justify-center relative text-gray3 bg-input w-full h-12 4k:h-16 rounded-full", {
-                  "bg-red text-white button-shadow-gray": isSelected,
-                })}
+                className={cn(
+                  "uppercase animate flex items-center justify-center relative text-gray3 bg-input w-full h-12 2k:h-16 4k:h-20 rounded-full",
+                  {
+                    "bg-red text-white button-shadow-gray": isSelected,
+                  },
+                )}
               >
                 <b>{e}</b>
 
-                {isSelected ? <Icon icon={ICONS.info} className="absolute centered-right -translate-x-4" width={25} /> : null}
+                {isSelected ? (
+                  <Icon icon={ICONS.info} className="absolute centered-right -translate-x-4 2k:-translate-x-6 text-3xl 2k:text-4xl" />
+                ) : null}
               </button>
             );
           })}
@@ -186,18 +191,20 @@ export default function RegistrationForm() {
           <section className="flex gap-4 items-center">
             <button
               type="button"
-              className={cn("flex items-center justify-start px-1 relative bg-input rounded-full w-14 h-8", { "justify-end": watch().agreed })}
+              className={cn("flex items-center justify-start px-1 relative bg-input rounded-full w-14 h-8 2k:w-20 2k:h-12", {
+                "justify-end": watch().agreed,
+              })}
               onClick={() => {
                 setValue("agreed", !watch().agreed);
                 trigger("agreed");
               }}
             >
               <div
-                className={cn("flex animate items-center justify-center size-6 rounded-full", {
+                className={cn("flex animate items-center justify-center size-6 2k:size-10 rounded-full", {
                   "bg-red text-white": watch().agreed,
                 })}
               >
-                <Icon icon={ICONS.check} width={20} />
+                <Icon icon={ICONS.check} className="text-3xl 2k:text-4xl" />
               </div>
             </button>
             <p>Я даю свое право на информационную рассылку</p>

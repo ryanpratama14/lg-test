@@ -6,16 +6,20 @@ import logo from "assets/logo.png";
 
 export default function DashboardMenus() {
   return (
-    <aside className="w-72 sticky top-0 h-screen flex items-center flex-col gap-10 py-20">
+    <aside className="w-[28rem] 2k:w-[36rem] 4k:w-[52rem] sticky top-0 h-screen flex items-center flex-col gap-10 4k:gap-16 py-20">
       <Img src={logo} alt="Logo" className="w-[50%]" />
 
       <section className="flex flex-col divide-y-2 divide-divide border-y-2 border-divide w-full">
         {DASHBOARD_MENUS.map((e) => {
           return (
-            <button key={e.icon} type="button" className="group flex flex-col items-center justify-center gap-4 py-10 hover:bg-silver animate">
+            <button
+              key={e.icon}
+              type="button"
+              className="group flex flex-col items-center justify-center px-4 gap-4 py-10 4k:py-16 hover:bg-silver animate"
+            >
               <section className="relative">
-                <Icon icon={e.icon} width={30} className="text-grayIcon animate group-hover:scale-125" />
-                {e.notifications ? <div className="absolute -top-3 -right-3 size-2 rounded-full bg-red" /> : null}
+                <Icon icon={e.icon} className="text-grayIcon animate group-hover:scale-125 text-3xl 2k:text-4xl 4k:text-6xl" />
+                {e.notifications ? <div className="absolute -top-3 -right-3 size-2 4k:size-4 rounded-full bg-red" /> : null}
               </section>
               <b>{e.label}</b>
             </button>

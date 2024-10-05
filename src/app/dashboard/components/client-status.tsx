@@ -5,7 +5,7 @@ const DATA = {
 
 export default function ClientStatus() {
   return (
-    <section className="dashboard-box flex flex-col gap-4">
+    <section className="dashboard-box flex flex-col justify-between">
       <section className="flex items-center justify-between">
         <p>Текущий статус:</p>
         <b className="uppercase">{DATA.status}</b>

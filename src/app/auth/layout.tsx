@@ -11,8 +11,8 @@ export default function AuthLayout({ children }: Props) {
       {children}
 
       <section className="font-bold font-nitti text-center absolute top-12 left-12">
-        <h1 className="text-9xl">23</h1>
-        <p className="text-4xl">Стандарт</p>
+        <h1 className="text-9xl 4k:text-[12rem]">23</h1>
+        <p className="text-4xl 2k:!text-5xl 4k:!text-6xl">Стандарт</p>
       </section>
 
       <Img src={rectangle_left} className="absolute bottom-0 left-0 w-56" alt="" />

@@ -25,12 +25,15 @@ const Select = forwardRef<HTMLSelectElement, Props>(
     return (
       <section className={cn("flex flex-col gap-1.5 w-full", classNameDiv)}>
         <section
-          className={cn("animate group bg-input relative pl-5 pr-12 flex gap-4 items-center w-full rounded-lg border-2 border-transparent", {
-            "border-green outline outline-4 outline-[#F0FAF4]": validated,
-            "border-red outline outline-4 outline-[#FDF1F0]": error,
-          })}
+          className={cn(
+            "animate group bg-input relative pl-5 4k:pl-8 pr-12 flex gap-4 4k:gap-8 items-center w-full rounded-lg border-2 border-transparent",
+            {
+              "border-green outline outline-4 outline-[#F0FAF4]": validated,
+              "border-red outline outline-4 outline-[#FDF1F0]": error,
+            },
+          )}
         >
-          <Icon icon={icon} className="text-gray2" width={30} />
+          <Icon icon={icon} className="text-gray2 text-3xl 4k:text-5xl" />
           <section className="relative w-full">
             <select
               id={id}

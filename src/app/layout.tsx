@@ -2,6 +2,10 @@ import ScreenSizeIndicator from "@/components/screen-size-indicator";
 import { env } from "@/env";
 import "@/styles/globals.css";
 import type { Metadata } from "next";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
 
 export const metadata: Metadata = {
   title: "LANGAME test - tg: @ryanpratama14",
