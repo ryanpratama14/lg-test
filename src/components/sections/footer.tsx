@@ -7,13 +7,13 @@ export default function Footer() {
   return (
     <Fragment>
       <section className="flex flex-col items-center justify-center absolute bottom-0 w-full">
-        <section className="flex gap-4">
+        <section className="flex gap-4 4k:gap-6">
           {FOOTER_ITEMS.map((e) => (
             <p key={e}>{e}</p>
           ))}
         </section>
 
-        <section className="flex items-center gap-2 py-6">
+        <section className="flex items-center gap-2 py-6 4k:py-12">
           <p>Powered by</p>
           <Img src={logofont} alt="" className="w-24 2k:w-36 4k:w-52" />
           <b>SOFTWARE</b>

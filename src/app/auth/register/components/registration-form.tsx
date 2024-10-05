@@ -204,7 +204,7 @@ export default function RegistrationForm() {
                   "bg-red text-white": watch().agreed,
                 })}
               >
-                <Icon icon={ICONS.check} className="text-3xl 2k:text-4xl" />
+                <Icon icon={ICONS.check} className="text-xl 2k:text-4xl" />
               </div>
             </button>
             <p>Я даю свое право на информационную рассылку</p>

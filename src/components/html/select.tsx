@@ -57,7 +57,9 @@ const Select = forwardRef<HTMLSelectElement, Props>(
             </label>
           </section>
 
-          {isSubmitted ? <Img className="w-5 absolute centered-right -translate-x-4" src={validated ? validIcon : errorIcon} alt="" /> : null}
+          {isSubmitted ? (
+            <Img className="w-5 2k:size-8 absolute centered-right -translate-x-4 2k:-translate-x-8" src={validated ? validIcon : errorIcon} alt="" />
+          ) : null}
         </section>
         <small className={cn("uppercase font-bold text-red animate", { "opacity-0 -translate-y-2 -z-10": !error })}>{error}</small>
       </section>
