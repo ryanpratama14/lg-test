@@ -13,13 +13,14 @@ type Props = ComponentProps<"input"> & {
   label: string;
   classNameDiv?: string;
   isSubmitted: boolean;
+  isSubmitSuccessful: boolean;
 };
 
 const Input = forwardRef<HTMLInputElement, Props>(
-  ({ isSubmitted, classNameDiv, label, placeholder, className, error, type, icon, val, ...rest }, ref) => {
+  ({ isSubmitSuccessful, isSubmitted, classNameDiv, label, placeholder, className, error, type, icon, val, ...rest }, ref) => {
     const id = useId();
     const isDirty = val.length;
-    const validated = isDirty && !error && isSubmitted;
+    const validated = !isSubmitSuccessful && isDirty && !error && isSubmitted;
     const isDate = type === "date";
     const isPassword = type === "password";
     const [showPassword, setShowPassword] = useState(false);
@@ -70,7 +71,7 @@ const Input = forwardRef<HTMLInputElement, Props>(
             </button>
           ) : null}
 
-          {isSubmitted && isDirty ? (
+          {isSubmitted && !isSubmitSuccessful && isDirty ? (
             <Img className="w-5 2k:size-8 absolute centered-right -translate-x-4 2k:-translate-x-8" src={validated ? validIcon : errorIcon} alt="" />
           ) : null}
         </section>

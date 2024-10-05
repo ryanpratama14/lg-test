@@ -8,6 +8,7 @@ import { cn, formatPhoneNumber, onChangePhoneNumber } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Icon } from "@iconify-icon/react";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -45,7 +46,7 @@ export default function RegistrationForm() {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitted },
+    formState: { errors, isSubmitSuccessful, isSubmitted },
     watch,
     setValue,
     trigger,
@@ -64,6 +65,13 @@ export default function RegistrationForm() {
       type: "Полная",
     },
   });
+
+  const password = watch("password");
+
+  useEffect(() => {
+    if (!isSubmitted) return;
+    password && trigger("confirmPassword");
+  }, [password, trigger, isSubmitted]);
 
   return (
     <form onSubmit={handleSubmit(() => router.push("/dashboard"))} className="flex flex-col gap-10">
@@ -96,6 +104,7 @@ export default function RegistrationForm() {
 
       <section className="grid grid-cols-2 gap-6">
         <Input
+          isSubmitSuccessful={isSubmitSuccessful}
           isSubmitted={isSubmitted}
           classNameDiv="col-span-2"
           val={watch().fullName}
@@ -111,6 +120,7 @@ export default function RegistrationForm() {
           name="phoneNumber"
           render={({ field: { onChange, name, value } }) => (
             <Input
+              isSubmitSuccessful={isSubmitSuccessful}
               isSubmitted={isSubmitted}
               name={name}
               value={formatPhoneNumber(value).text}
@@ -126,6 +136,7 @@ export default function RegistrationForm() {
         />
 
         <Input
+          isSubmitSuccessful={isSubmitSuccessful}
           isSubmitted={isSubmitted}
           type="date"
           maxLength={10}
@@ -138,6 +149,7 @@ export default function RegistrationForm() {
         />
 
         <Select
+          isSubmitSuccessful={isSubmitSuccessful}
           isSubmitted={isSubmitted}
           {...register("document")}
           placeholder="Документ"
@@ -153,6 +165,7 @@ export default function RegistrationForm() {
         />
 
         <Input
+          isSubmitSuccessful={isSubmitSuccessful}
           isSubmitted={isSubmitted}
           maxLength={10}
           val={watch().serialNumber}
@@ -164,6 +177,7 @@ export default function RegistrationForm() {
         />
 
         <Input
+          isSubmitSuccessful={isSubmitSuccessful}
           isSubmitted={isSubmitted}
           type="password"
           val={watch().password}
@@ -175,6 +189,7 @@ export default function RegistrationForm() {
         />
 
         <Input
+          isSubmitSuccessful={isSubmitSuccessful}
           isSubmitted={isSubmitted}
           type="password"
           val={watch().confirmPassword}
@@ -196,7 +211,7 @@ export default function RegistrationForm() {
               })}
               onClick={() => {
                 setValue("agreed", !watch().agreed);
-                trigger("agreed");
+                isSubmitted && trigger("agreed");
               }}
             >
               <div

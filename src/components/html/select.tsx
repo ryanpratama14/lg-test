@@ -14,13 +14,14 @@ type Props = ComponentProps<"select"> & {
   classNameDiv?: string;
   options: React.ReactNode;
   isSubmitted: boolean;
+  isSubmitSuccessful: boolean;
 };
 
 const Select = forwardRef<HTMLSelectElement, Props>(
-  ({ isSubmitted, classNameDiv, label, placeholder, className, error, icon, val, options, ...rest }, ref) => {
+  ({ isSubmitted, isSubmitSuccessful, classNameDiv, label, placeholder, className, error, icon, val, options, ...rest }, ref) => {
     const id = useId();
     const isDirty = val.length;
-    const validated = isDirty && !error && isSubmitted;
+    const validated = isDirty && !error && isSubmitted && !isSubmitSuccessful;
 
     return (
       <section className={cn("flex flex-col gap-1.5 w-full", classNameDiv)}>
@@ -57,7 +58,7 @@ const Select = forwardRef<HTMLSelectElement, Props>(
             </label>
           </section>
 
-          {isSubmitted ? (
+          {isSubmitted && !isSubmitSuccessful ? (
             <Img className="w-5 2k:size-8 absolute centered-right -translate-x-4 2k:-translate-x-8" src={validated ? validIcon : errorIcon} alt="" />
           ) : null}
         </section>
