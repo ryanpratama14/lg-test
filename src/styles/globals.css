@@ -13,10 +13,13 @@ body {
   a,
   b,
   input,
-  label,
   select,
   option {
     @apply text-base 2k:!text-2xl 4k:!text-4xl;
+  }
+
+  label {
+    @apply text-[0.9rem] 2k:text-xl 4k:text-3xl;
   }
 
   h5 {
@@ -24,7 +27,7 @@ body {
   }
 
   small {
-    @apply text-sm 2k:text-base 4k:text-xl;
+    @apply text-xs 2k:text-base 4k:text-xl;
   }
 }
 

@@ -29,11 +29,11 @@ const Input = forwardRef<HTMLInputElement, Props>(
       <section className={cn("flex flex-col gap-1.5 w-full", classNameDiv)}>
         <section
           className={cn(
-            "animate group bg-input relative pl-5 4k:pl-8 pr-12 md:pr-20 flex gap-4 4k:gap-8 items-center w-full rounded-lg border-2 border-transparent",
+            "animate group bg-input relative pl-5 4k:pl-8 flex gap-4 4k:gap-8 items-center w-full rounded-lg 4k:rounded-2xl border-2 border-transparent",
             {
               "!border-green outline outline-4 outline-[#F0FAF4]": validated,
               "border-red outline outline-4 outline-[#FDF1F0]": error,
-              "pr-32 md:pr-44 4k:pr-56": isPassword,
+              "bg-white": isSubmitted,
             },
           )}
         >
@@ -42,9 +42,10 @@ const Input = forwardRef<HTMLInputElement, Props>(
             <input
               autoComplete="off"
               className={cn(
-                "z-10 font-bold text-lg placeholder:text-gray w-full outline-none bg-transparent h-20 4k:h-36 animate group-hover:translate-y-2.5 group-hover:2k:translate-y-3 4k:group-hover:translate-y-6",
+                "z-10 font-bold text-lg placeholder:text-gray w-full outline-none bg-transparent h-20 2k:h-24 4k:h-36 animate group-hover:translate-y-2.5 group-hover:2k:translate-y-4 4k:group-hover:translate-y-6",
                 className,
-                { "translate-y-2.5 2k:translate-y-3 4k:translate-y-6": isDirty || isDate },
+                { "translate-y-2.5 2k:translate-y-4 4k:translate-y-6": isDirty || isDate },
+                { "pr-32 2k:pr-40 4k:pr-64": isPassword || isDate },
               )}
               type={type && !isPassword ? type : isPassword && !showPassword ? "password" : "text"}
               {...rest}
@@ -53,8 +54,8 @@ const Input = forwardRef<HTMLInputElement, Props>(
             />
             <label
               htmlFor={id}
-              className={cn("text-gray animate absolute centered group-hover:top-6 4k:group-hover:top-12 text-left w-full", {
-                "top-6 4k:top-12": isDirty || isDate,
+              className={cn("text-gray animate absolute centered group-hover:top-6 2k:group-hover:top-7 4k:group-hover:top-12 text-left w-full", {
+                "top-6 2k:top-7 4k:top-12": isDirty || isDate,
               })}
             >
               {validated ? label : placeholder}
@@ -72,7 +73,11 @@ const Input = forwardRef<HTMLInputElement, Props>(
           ) : null}
 
           {isSubmitted && !isSubmitSuccessful && isDirty ? (
-            <Img className="w-5 2k:size-8 absolute centered-right -translate-x-4 2k:-translate-x-8" src={validated ? validIcon : errorIcon} alt="" />
+            <Img
+              className="w-5 2k:size-6 4k:size-10 absolute centered-right -translate-x-4 4k:-translate-x-6"
+              src={validated ? validIcon : errorIcon}
+              alt=""
+            />
           ) : null}
         </section>
         <small className={cn("uppercase font-bold text-red animate", { "opacity-0 -translate-y-2 -z-10": !error })}>{error}</small>

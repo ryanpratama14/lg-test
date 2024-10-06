@@ -27,10 +27,11 @@ const Select = forwardRef<HTMLSelectElement, Props>(
       <section className={cn("flex flex-col gap-1.5 w-full", classNameDiv)}>
         <section
           className={cn(
-            "animate group bg-input relative pl-5 4k:pl-8 pr-12 flex gap-4 4k:gap-8 items-center w-full rounded-lg border-2 border-transparent",
+            "animate group bg-input relative pl-5 4k:pl-8 pr-10 flex gap-4 4k:gap-8 items-center w-full rounded-lg 4k:rounded-2xl border-2 border-transparent",
             {
-              "border-green outline outline-4 outline-[#F0FAF4]": validated,
+              "border-green outline outline-4 outline-[#F0FAF4] bg-white": validated,
               "border-red outline outline-4 outline-[#FDF1F0]": error,
+              "bg-white": isSubmitted,
             },
           )}
         >
@@ -41,25 +42,29 @@ const Select = forwardRef<HTMLSelectElement, Props>(
               {...rest}
               ref={ref}
               className={cn(
-                "z-10 -translate-x-1 font-bold text-lg placeholder:text-gray w-full outline-none bg-transparent h-20 4k:h-36 animate group-hover:translate-y-2.5 4k:group-hover:translate-y-6",
+                "z-10 -translate-x-1 font-bold text-lg placeholder:text-gray w-full outline-none bg-transparent h-20 2k:h-24 4k:h-36 animate group-hover:translate-y-2.5 group-hover:2k:translate-y-4 4k:group-hover:translate-y-6",
                 className,
-                { "translate-y-2.5 4k:translate-y-6": isDirty },
+                { "translate-y-2.5 2k:translate-y-4 4k:translate-y-6": isDirty },
               )}
             >
               {options}
             </select>
             <label
               htmlFor={id}
-              className={cn("text-gray animate absolute centered group-hover:top-6 4k:group-hover:top-12 text-left w-full", {
-                "top-6 4k:top-12": isDirty,
+              className={cn("text-gray animate absolute centered group-hover:top-6 2k:group-hover:top-7 4k:group-hover:top-12 text-left w-full", {
+                "top-6 2k:top-7 4k:top-12": isDirty,
               })}
             >
               {validated ? label : placeholder}
             </label>
           </section>
 
-          {isSubmitted && !isSubmitSuccessful ? (
-            <Img className="w-5 2k:size-8 absolute centered-right -translate-x-4 2k:-translate-x-8" src={validated ? validIcon : errorIcon} alt="" />
+          {isSubmitted && !isSubmitSuccessful && isDirty ? (
+            <Img
+              className="w-5 2k:size-6 4k:size-10 absolute centered-right -translate-x-4 4k:-translate-x-6"
+              src={validated ? validIcon : errorIcon}
+              alt=""
+            />
           ) : null}
         </section>
         <small className={cn("uppercase font-bold text-red animate", { "opacity-0 -translate-y-2 -z-10": !error })}>{error}</small>

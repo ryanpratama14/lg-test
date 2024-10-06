@@ -206,7 +206,7 @@ export default function RegistrationForm() {
           <section className="flex gap-4 items-center">
             <button
               type="button"
-              className={cn("flex items-center justify-start px-1 relative bg-input rounded-full w-14 h-8 2k:w-20 2k:h-12", {
+              className={cn("flex items-center justify-start px-1 relative bg-[#E7E7E7] rounded-full w-14 h-8 2k:w-20 2k:h-12", {
                 "justify-end": watch().agreed,
               })}
               onClick={() => {

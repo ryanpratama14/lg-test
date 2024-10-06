@@ -8,7 +8,7 @@ import Link from "next/link";
 export default function HomePage() {
   return (
     <article className="flex items-center justify-center min-h-screen">
-      <section className="flex items-center justify-center flex-col gap-12 w-[20%]">
+      <section className="flex items-center justify-center flex-col gap-12 4k:gap-16 w-96 2k:w-[32rem] 4k:w-[42rem]">
         <Img src={logo} alt="" className="w-44 4k:w-72" />
         <LoginForm />
 
