@@ -33,7 +33,7 @@ const Input = forwardRef<HTMLInputElement, Props>(
             {
               "!border-green outline outline-4 outline-[#F0FAF4]": validated,
               "border-red outline outline-4 outline-[#FDF1F0]": error,
-              "bg-white": isSubmitted,
+              "bg-white": isSubmitted && !isSubmitSuccessful,
             },
           )}
         >

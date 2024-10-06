@@ -19,13 +19,15 @@ export default function LoginForm() {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitSuccessful, isSubmitted },
+    formState: { errors, isSubmitSuccessful: isSuccess, isSubmitted, submitCount },
     watch,
     control,
   } = useForm<z.infer<typeof Schema>>({
     resolver: zodResolver(Schema),
     defaultValues: { phoneNumber: "", password: "" },
   });
+
+  const isSubmitSuccessful = isSuccess && submitCount === 1;
 
   return (
     <form onSubmit={handleSubmit(() => router.push("/dashboard"))} className="flex flex-col gap-12 w-full">
