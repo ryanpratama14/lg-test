@@ -7,7 +7,7 @@ export default function RegisterPage() {
   return (
     <article className="min-h-screen flex flex-col gap-12 items-center justify-center">
       <h1 className="font-bold text-4xl 2k:text-5xl 4k:text-7xl">Регистрация</h1>
-      <section className="w-full flex flex-col gap-10 px-12 lg:w-[40%] 2k:w-[37.5%]">
+      <section className="w-full flex flex-col gap-10 px-12 lg:w-[50rem] 2k:w-[37.5%]">
         <RegistrationForm />
         <Link
           href="/auth/login"
